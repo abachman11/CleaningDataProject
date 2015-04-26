@@ -31,7 +31,7 @@ activity.labels = read.table(paste(root.data.folder, "activity_labels.txt", sep=
 final.data.set <- total.data.set %>%
   left_join(activity.labels, by="activityLabelNumber") %>%
   select(activityLabel, subjectLabel, contains("mean"), contains("std")) %>%
-  gather(measurement.name, measurement.value, everything(), -activityLabel)
+  gather(measurement.name, measurement.value, everything(), -activityLabel, -subjectLabel)
 
 step.five = <- final.data.set <- %>% 
   group_by(subjectLabel, activityLabel, measurment.name) %>%
