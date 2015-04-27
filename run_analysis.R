@@ -33,6 +33,10 @@ final.data.set <- total.data.set %>%
   select(activityLabel, subjectLabel, contains("mean"), contains("std")) %>%
   gather(measurement.name, measurement.value, everything(), -activityLabel, -subjectLabel)
 
-step.five = <- final.data.set <- %>% 
-  group_by(subjectLabel, activityLabel, measurment.name) %>%
+step.five <- final.data.set %>% 
+  group_by(subjectLabel, activityLabel, measurement.name) %>%
   summarize(average.value=mean(measurement.value))
+
+write.table(step.five, file="results.txt", row.name=FALSE)
+
+rm("activity.labels", "feature.names", "features", "test.data.set", "test.data.set.activities", "test.data.set.subject", "train.data.set.activities", "train.data.set", "train.data.set.subject", "total.data.set")
